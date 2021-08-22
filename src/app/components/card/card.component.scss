@@ -14,6 +14,9 @@ $card-width: 307px;
   flex-direction: column;
   align-items: center;
   position: relative;
+  background-image: url("src/assets/noise.png");
+  background-size: cover;
+  background-position: center;
 
   .image-content {
     box-sizing: border-box;
