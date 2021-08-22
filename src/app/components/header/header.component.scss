@@ -1,0 +1,16 @@
+@import "~src/colors";
+
+.header {
+  min-height: 60px;
+  -webkit-box-shadow: 0px 0px 15px -5px #000000;
+  box-shadow: 0px 0px 15px -5px #000000;
+  background-color: $blue;
+  display: flex;
+  align-items: center;
+}
+
+.header-title {
+  color: white;
+  font-size: 30px;
+  margin-left: 70px;
+}

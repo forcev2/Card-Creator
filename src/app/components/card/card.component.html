@@ -1,0 +1,33 @@
+<div class="content">
+    <div class="type floating">
+        <img *ngIf="type" [src]=creatorService.getCardType(type).icon height="50px" />
+    </div>
+    <div class="attack floating">
+        <div>
+            {{attack}}
+        </div>
+    </div>
+    <div class="sword-right floating">
+        <img src="assets/icons/sword-svgrepo-com-better.svg" height="30px" />
+    </div>
+    <div class="sword-left floating">
+        <img src="assets/icons/sword-svgrepo-com-better.svg" height="30px" />
+    </div>
+    <div class="shield floating">
+        <img src="assets/icons/shield-svgrepo-com.svg" height="30px" />
+    </div>
+    <div class="health floating">
+        <div>
+            {{health}}
+        </div>
+    </div>
+    <div class="image-wrapper">
+        <div class="image-content" [ngStyle]="imgURL && {'background-image': 'url(' + imgURL + ')'}"></div>
+    </div>
+    <div class="desc-content">
+        <div class="name">
+            {{name}}
+        </div>
+        {{description}}
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="body">
+    <div class="left-panel">
+        <div class="part-input title part-input-left">
+            <h2>Create your card</h2>
+        </div>
+        <div class="part-input part-input-left">
+            <label class="label">Name</label>
+            <input class="input-basic" [(ngModel)]="name">
+        </div>
+        <div class="part-input part-input-left">
+            <label class="label">Photo</label>
+            <input #file type="file" id="myFile" name="filename" [(ngModel)]="image" accept='image/*'
+                (change)="preview(file.files)">
+        </div>
+        <div class="part-input part-input-left">
+            <label class="label">Description</label>
+            <textarea class="input-basic input-text-area" [(ngModel)]="description"></textarea>
+        </div>
+    </div>
+
+    <div class="middle">
+        <app-card [name]="name" [description]="description" [imgURL]="imgURL" [attack]="attack" [health]="health"
+            [type]="type"></app-card>
+    </div>
+
+    <div class="right-panel">
+        <div class="part-input part-input-right">
+            <label class="label">Attack</label>
+            <input class="input-basic" [(ngModel)]="attack">
+            <label class="label">Health</label>
+            <input class="input-basic" [(ngModel)]="health">
+        </div>
+        <div class="part-input part-input-right">
+            <label class="label">Type</label>
+            <div class="types">
+                <label class="container" *ngFor="let cardType of creatorService.cardTypes">
+                    <input type="radio" name="radio" (change)="onProfitSelectionChange(cardType.type)"
+                        checked="checked">
+                    <span class="checkmark">
+                        <img [src]=cardType.icon height="40px" />
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
