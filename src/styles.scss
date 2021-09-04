@@ -4,7 +4,11 @@ html,
 body {
   height: 100%;
   margin: 0;
-  font-family: Arial;
+  font-family: url("src/assets/fonts/MedievalSharp-Regular.ttf") !important;
   background-color: $gray-light;
   color: $gray-very-dark;
+}
+
+input {
+  font-family: url("src/assets/fonts/MedievalSharp-Regular.ttf") !important;
 }

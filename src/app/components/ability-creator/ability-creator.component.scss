@@ -1,0 +1,52 @@
+.content {
+  background-color: white;
+  width: 800px;
+  height: 500px;
+  padding: 40px;
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 0px 8px -2px #000000;
+  box-shadow: 0px 0px 8px -2px #000000;
+  background-image: url("src/assets/clean-gray-paper.png");
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .body {
+    margin-top: 20px;
+
+    .input-basic {
+      border-radius: 5px;
+      border-color: #cccccc;
+      border-style: solid;
+      font-size: 20px;
+      height: 30px;
+      padding-left: 5px;
+      border-width: 1px;
+      width: 400px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* The container must be positioned relative: */
+    .custom-select {
+      position: relative;
+      font-family: Arial;
+
+      .select-body {
+      }
+
+      .list-item {
+        background-color: red;
+        height: 30px;
+      }
+    }
+  }
+}

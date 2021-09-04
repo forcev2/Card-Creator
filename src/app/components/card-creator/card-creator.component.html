@@ -1,20 +1,35 @@
 <div class="body">
     <div class="left-panel">
-        <div class="part-input title part-input-left">
-            <h2>Create your card</h2>
+        <div class="panel-content">
+            <div class="part-input title part-input-left">
+                <h2>Create your card</h2>
+            </div>
+            <div class="part-input part-input-left">
+                <div class="border">
+                    <div class="border-d">
+                        <div class="border-inner">
+                            <div class="border-inner-inner">
+                                <div class="border-inner-inner-inner">
+                                    <input class="input-basic" [(ngModel)]="name" placeholder="Name">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="part-input part-input-left">
+                <label class="label">Photo</label>
+                <input #file type="file" id="myFile" name="filename" [(ngModel)]="image" accept='image/*'
+                    (change)="preview(file.files)">
+            </div>
+            <div class="part-input part-input-left">
+                <label class="label">Description</label>
+                <textarea class="input-basic input-text-area" [(ngModel)]="description"></textarea>
+            </div>
+
         </div>
-        <div class="part-input part-input-left">
-            <label class="label">Name</label>
-            <input class="input-basic" [(ngModel)]="name">
-        </div>
-        <div class="part-input part-input-left">
-            <label class="label">Photo</label>
-            <input #file type="file" id="myFile" name="filename" [(ngModel)]="image" accept='image/*'
-                (change)="preview(file.files)">
-        </div>
-        <div class="part-input part-input-left">
-            <label class="label">Description</label>
-            <textarea class="input-basic input-text-area" [(ngModel)]="description"></textarea>
+        <div class="left-panel-border">
+            <div clas="panel-border-inner"></div>
         </div>
     </div>
 
@@ -24,22 +39,62 @@
     </div>
 
     <div class="right-panel">
-        <div class="part-input part-input-right">
-            <label class="label">Attack</label>
-            <input class="input-basic" [(ngModel)]="attack">
-            <label class="label">Health</label>
-            <input class="input-basic" [(ngModel)]="health">
+        <div class="right-panel-border">
+            <div clas="panel-border-inner"></div>
         </div>
-        <div class="part-input part-input-right">
-            <label class="label">Type</label>
-            <div class="types">
-                <label class="container" *ngFor="let cardType of creatorService.cardTypes">
-                    <input type="radio" name="radio" (change)="onProfitSelectionChange(cardType.type)"
-                        checked="checked">
-                    <span class="checkmark">
-                        <img [src]=cardType.icon height="40px" />
-                    </span>
-                </label>
+        <div class="panel-content">
+            <div class="part-input part-input-right">
+                <label class="label">Attack</label>
+                <div class="border">
+                    <div class="border-d">
+                        <div class="border-inner">
+                            <div class="border-inner-inner">
+                                <div class="border-inner-inner-inner">
+                                    <input class="input-basic" [(ngModel)]="attack">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <label class="label">Health</label>
+                <div class="border">
+                    <div class="border-d">
+                        <div class="border-inner">
+                            <div class="border-inner-inner">
+                                <div class="border-inner-inner-inner">
+                                    <input class="input-basic" [(ngModel)]="health">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="part-input part-input-right">
+                <label class="label">Type</label>
+                <div class="types">
+                    <label class="container" *ngFor="let cardType of creatorService.cardTypes">
+                        <div class="border">
+                            <div class="border-d">
+                                <div class="border-inner">
+                                    <div class="border-inner-inner" style="height: 40px; width: 40px">
+                                        <input type="radio" name="radio"
+                                            (change)="onProfitSelectionChange(cardType.type)" checked="checked">
+                                        <span>
+                                            <img [src]=cardType.icon height="40px" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+
+                </div>
+            </div>
+            <div class="part-input part-input-right">
+                <label class="label">Abillieties (Actions)</label>
+                <div class="ability-btnn">
+                    <div>Add new ability</div>
+                </div>
             </div>
         </div>
     </div>
