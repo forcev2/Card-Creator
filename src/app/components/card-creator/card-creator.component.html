@@ -2,25 +2,18 @@
     <div class="left-panel">
         <div class="panel-content">
             <div class="part-input title part-input-left">
-                <h2>Create your card</h2>
+                <div class="title-part">Create your card</div>
             </div>
             <div class="part-input part-input-left">
-                <div class="border">
-                    <div class="border-d">
-                        <div class="border-inner">
-                            <div class="border-inner-inner">
-                                <div class="border-inner-inner-inner">
-                                    <input class="input-basic" [(ngModel)]="name" placeholder="Name">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <label class="label">Name</label>
+                <input class="input-basic" [(ngModel)]="name" placeholder="Name"
+                    [ngClass]="{'warn': !name && !allFilled}">
+
             </div>
             <div class="part-input part-input-left">
                 <label class="label">Photo</label>
                 <input #file type="file" id="myFile" name="filename" [(ngModel)]="image" accept='image/*'
-                    (change)="preview(file.files)">
+                    (change)="preview(file.files)" [ngClass]="{'warn': !image && !allFilled}">
             </div>
             <div class="part-input part-input-left">
                 <label class="label">Description</label>
@@ -28,72 +21,77 @@
             </div>
 
         </div>
-        <div class="left-panel-border">
-            <div clas="panel-border-inner"></div>
-        </div>
     </div>
 
     <div class="middle">
-        <app-card [name]="name" [description]="description" [imgURL]="imgURL" [attack]="attack" [health]="health"
+        <app-card [name]="name" [abilities]="abilities" [imgURL]="imgURL" [attack]="attack" [health]="health"
             [type]="type"></app-card>
     </div>
 
     <div class="right-panel">
-        <div class="right-panel-border">
-            <div clas="panel-border-inner"></div>
-        </div>
         <div class="panel-content">
             <div class="part-input part-input-right">
                 <label class="label">Attack</label>
-                <div class="border">
-                    <div class="border-d">
-                        <div class="border-inner">
-                            <div class="border-inner-inner">
-                                <div class="border-inner-inner-inner">
-                                    <input class="input-basic" [(ngModel)]="attack">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <label class="label">Health</label>
-                <div class="border">
-                    <div class="border-d">
-                        <div class="border-inner">
-                            <div class="border-inner-inner">
-                                <div class="border-inner-inner-inner">
-                                    <input class="input-basic" [(ngModel)]="health">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <input class="input-basic" [(ngModel)]="attack" type="number"
+                    [ngClass]="{'warn': (!attack && !allFilled) || (numbersNegative)}">
+
+                <label class="label">Defence</label>
+                <input class="input-basic" [(ngModel)]="health" type="number"
+                    [ngClass]="{'warn': (!health && !allFilled) || (numbersNegative)}">
+
             </div>
             <div class="part-input part-input-right">
                 <label class="label">Type</label>
                 <div class="types">
-                    <label class="container" *ngFor="let cardType of creatorService.cardTypes">
-                        <div class="border">
-                            <div class="border-d">
-                                <div class="border-inner">
-                                    <div class="border-inner-inner" style="height: 40px; width: 40px">
-                                        <input type="radio" name="radio"
-                                            (change)="onProfitSelectionChange(cardType.type)" checked="checked">
-                                        <span>
-                                            <img [src]=cardType.icon height="40px" />
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <label class="chack-cont " *ngFor="let cardType of creatorService.cardTypes">
+                        <input type="radio" name="radio" (change)="onProfitSelectionChange(cardType.type)"
+                            checked="checked">
+                        <span class="checkmark" style="margin-left: 10px">
+                            <img [src]=cardType.icon height="35px" />
+                        </span>
                     </label>
-
                 </div>
             </div>
             <div class="part-input part-input-right">
                 <label class="label">Abillieties (Actions)</label>
-                <div class="ability-btnn">
+                <div class="ability-wrapper">
+                    <div class="ability-added" *ngFor="let ability of abilities; index as i">
+                        <div>
+                            {{ability.name}}
+                        </div>
+                        <div class="ability-button edit" (click)="editAbility(i)">
+                            <span class="material-icons">
+                                edit
+                            </span>
+                        </div>
+                        <div class="ability-button delete" (click)="removeAbility(i)">
+                            <span class="material-icons">
+                                clear
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bttn" (click)="open(content)" [ngClass]="{'disabled-bttn': cannotAddMoreAbilities()}">
                     <div>Add new ability</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-error warn-text">
+                <span *ngIf="!allFilled">Fill all marked fields</span>
+                <br>
+                <span *ngIf="numbersNegative">Defence and Attack cannot be less than or equal 0</span>
+            </div>
+            <div class="footer-right">
+                <div class="part-input part-cancel">
+                    <div class="bttn">
+                        <div>Cancel</div>
+                    </div>
+                </div>
+                <div class="part-input">
+                    <div class="bttn bttn-active" (click)="createCard()">
+                        <div>Create card</div>
+                    </div>
                 </div>
             </div>
         </div>

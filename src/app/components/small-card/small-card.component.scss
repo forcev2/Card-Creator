@@ -1,15 +1,15 @@
 @import "~src/colors";
 
-$card-height: 485px;
-$card-width: 307px;
+$card-height: 315px;
+$card-width: 200px;
 
 .content {
   width: $card-width;
   height: $card-height;
   background-color: $gray-light;
   border-radius: 8px;
-  -webkit-box-shadow: 0px 0px 15px -5px #000000;
-  box-shadow: 0px 0px 15px -5px #000000;
+  -webkit-box-shadow: 0px 0px 8px -2px #000000;
+  box-shadow: 0px 0px 8px -2px #000000;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,11 +20,11 @@ $card-width: 307px;
 
   .image-content {
     box-sizing: border-box;
-    margin-top: 15px;
-    width: 275px;
-    height: 275px;
+    margin-top: 10px;
+    width: 180px;
+    height: 180px;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 4px;
     border: 2px solid grey;
     background-size: cover;
     background-position: center;
@@ -36,17 +36,17 @@ $card-width: 307px;
 
   .desc-content {
     box-sizing: border-box;
-    margin-top: 15px;
-    width: 275px;
-    height: 168px;
+    margin-top: 8px;
+    width: 180px;
+    height: 110px;
     background-color: white;
     border-radius: 8px;
     padding: 8px;
 
     .name {
       text-align: center;
-      height: 20px;
-      font-size: 20px;
+      height: 13px;
+      font-size: 13px;
       margin-bottom: 5px;
       font-weight: bold;
     }
@@ -54,7 +54,7 @@ $card-width: 307px;
 
   .floating {
     box-sizing: border-box;
-    font-size: 30px;
+    font-size: 19px;
     font-weight: bold;
     position: absolute;
     display: inline-block;
@@ -67,8 +67,8 @@ $card-width: 307px;
   }
 
   .type {
-    width: 55px;
-    height: 55px;
+    width: 36px;
+    height: 36px;
     border-radius: 5px;
     background-color: white;
     left: 5px;
@@ -77,53 +77,53 @@ $card-width: 307px;
   }
 
   .attack {
-    width: 80px;
-    height: 40px;
+    width: 52px;
+    height: 26px;
     border-radius: 5px;
     background-color: white;
     left: 5px;
-    top: $card-height - 65px;
+    top: $card-height - 42px;
     color: white;
     z-index: 10;
   }
 
   .health {
-    width: 80px;
-    height: 40px;
+    width: 52px;
+    height: 26px;
     border-radius: 5px;
     background-color: white;
-    left: $card-width - 85px;
-    top: $card-height - 65px;
+    left: $card-width - 55px;
+    top: $card-height - 42px;
     color: white;
   }
 
   .sword-right {
     border: none;
-    width: 80px;
-    height: 40px;
+    width: 52px;
+    height: 26px;
     border-radius: 5px;
-    left: 2px;
-    top: $card-height - 95px;
+    left: 1px;
+    top: $card-height - 62px;
     z-index: 11;
     transform: scaleX(-1);
   }
   .sword-left {
     border: none;
-    width: 80px;
-    height: 40px;
+    width: 52px;
+    height: 26px;
     border-radius: 5px;
-    left: -4px;
-    top: $card-height - 95px;
+    left: -0px;
+    top: $card-height - 62px;
     z-index: 11;
   }
 
   .shield {
     border: none;
-    width: 80px;
-    height: 40px;
+    width: 52px;
+    height: 26px;
     border-radius: 5px;
-    left: $card-width - 85px;
-    top: $card-height - 95px;
+    left: $card-width - 55px;
+    top: $card-height - 62px;
     color: white;
     z-index: 11;
   }

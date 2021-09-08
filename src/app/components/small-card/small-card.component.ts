@@ -3,14 +3,14 @@ import { Ability } from '../ability-creator/ability-creator.component';
 import { CardCreatorService } from '../card-creator.service';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  selector: 'app-small-card',
+  templateUrl: './small-card.component.html',
+  styleUrls: ['./small-card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class SmallCardComponent implements OnInit {
 
   @Input()
-  name: string;
+  name: string = "name"
 
   @Input()
   description: string;
@@ -22,10 +22,10 @@ export class CardComponent implements OnInit {
   type: number;
 
   @Input()
-  health: number;
+  health: number = 22;
 
   @Input()
-  attack: number;
+  attack: number = 33;
 
   @Input()
   abilities: Ability[];
@@ -35,5 +35,4 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

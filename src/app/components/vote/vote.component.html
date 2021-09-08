@@ -1,0 +1,102 @@
+<div class="content">
+    <div class="header">
+        <div>Voting</div>
+    </div>
+    <div class="under-panel">
+        <div class="panel-under-label">Select the cards you would like to appear in the game</div>
+        <div class="layout-margin-first">
+            <input class="input-basic" [(ngModel)]="search" placeholder="Search" (ngModelChange)="filterChange()">
+        </div>
+        <div class="filter-layout">
+            <div class="bttn filter-bttn" (click)="filterMenuSwitch()" [ngClass]="{'bttn-ok': !openFilterMenu}">
+                Advanced filters
+            </div>
+        </div>
+    </div>
+    <div class="filter-panel">
+
+        <div #collapse="ngbCollapse" [(ngbCollapse)]="openFilterMenu">
+            <div class="card">
+                <div class="card-body">
+                    <div class="part-input  part-last">
+                        <label class="label">Card type</label>
+                        <div class="custom-select">
+                            <select class=" input-select" [(ngModel)]="cardType" (ngModelChange)="filterChange()">
+                                <option [ngValue]="null" class="list-item">
+                                    Any
+                                </option>
+                                <option [ngValue]="target.type" class="list-item"
+                                    *ngFor="let target of cardCreatorService.cardTypes">
+                                    {{target.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="part-input part-input-left">
+                        <label class="label">Defence</label>
+                        <input class="input-basic input-filter smaller" [(ngModel)]="defence" placeholder="Defence"
+                            type="number" (ngModelChange)="filterChange()">
+
+                    </div>
+                    <div class="part-input part-input-left">
+                        <label class="label">Attack</label>
+                        <input class="input-basic input-filter smaller" [(ngModel)]="attack" placeholder="Attack"
+                            type="number" (ngModelChange)="filterChange()">
+
+                    </div>
+                    <div class="part-input  part-last">
+                        <label class="label">Ability type</label>
+                        <div class="custom-select">
+                            <select class=" input-select" [(ngModel)]="abilityType" (ngModelChange)="filterChange()">
+                                <option [ngValue]="null" class="list-item">
+                                    Any
+                                </option>
+                                <option [ngValue]="target.type" class="list-item"
+                                    *ngFor="let target of abilityCreatorService.abilityTypes">
+                                    {{target.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="part-input">
+                        <label class=" label">Action type</label>
+                        <div class="custom-select">
+                            <select class=" input-select" [(ngModel)]="actionType" (ngModelChange)="filterChange()">
+                                <option [ngValue]="null" class="list-item">
+                                    Any
+                                </option>
+                                <option [ngValue]="ability.type" class="list-item"
+                                    *ngFor="let ability of abilityCreatorService.actionTypes">
+                                    {{ability.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="part-input  part-last">
+                        <label class="label">Ability target</label>
+                        <div class="custom-select">
+                            <select class=" input-select" [(ngModel)]="abilityTarget" (ngModelChange)="filterChange()">
+                                <option [ngValue]="null" class="list-item">
+                                    Any
+                                </option>
+                                <option [ngValue]="target.type" class="list-item"
+                                    *ngFor="let target of abilityCreatorService.targetTypes">
+                                    {{target.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-display">
+        <app-small-card *ngFor="let card of cardsVisible" [name]='card.name' [description]='card.description'
+            [imgURL]='card.imgURL' [type]='card.type' [health]='card.health' [attack]='card.attack'
+            [abilities]='card.abilities' (click)='selectCard(card)' [ngClass]='{"mark-card": isSelected(card)}'>
+        </app-small-card>
+
+    </div>
+
+</div>

@@ -8,6 +8,13 @@ import { CardCreatorComponent } from './components/card-creator/card-creator.com
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from './components/card/card.component';
 import { AbilityCreatorComponent } from './components/ability-creator/ability-creator.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule, MatSlideToggleModule } from '@angular/material';
+import { NgbAccordion, NgbAccordionModule, NgbCollapseModule, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { VoteComponent } from './components/vote/vote.component';
+import { SmallCardComponent } from './components/small-card/small-card.component';
+import { InfoCardComponent } from './components/info-card/info-card.component';
 
 @NgModule({
   declarations: [
@@ -15,14 +22,30 @@ import { AbilityCreatorComponent } from './components/ability-creator/ability-cr
     HeaderComponent,
     CardCreatorComponent,
     CardComponent,
-    AbilityCreatorComponent
+    AbilityCreatorComponent,
+    ConfirmModalComponent,
+    VoteComponent,
+    SmallCardComponent,
+    InfoCardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    NgbModule,
+    NgbModalModule,
+    NgbAccordionModule,
+    NgbCollapseModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AbilityCreatorComponent,
+    ConfirmModalComponent],
+  exports: [
+    MatSlideToggleModule,
+  ]
 })
 export class AppModule { }

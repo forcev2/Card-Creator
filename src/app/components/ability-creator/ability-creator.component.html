@@ -1,25 +1,117 @@
 <div class="content">
     <div class="header">
-        <div>Nazwa</div>
-        <div>x</div>
+        <div>Ability creator (akcji)</div>
     </div>
     <div class="body">
         <div class="input-wrapper">
             <label class="label">Name</label>
-            <input class="input-basic" [(ngModel)]="name">
+            <input class="input-basic" [(ngModel)]="name" [ngClass]="{'warn': !name}">
         </div>
-    </div>
-    <div class="body">
         <div class="input-wrapper">
-            <label class="label">Name</label>
+            <label class="label">When to activate</label>
             <div class="custom-select" style="width:200px;">
-                <select class="input-basic">
-                    <option value="0" class="list-item">Select car:</option>
-                    <option value="1" class="list-item">Audi</option>
-                    <option value="2">BMW</option>
-                    <option value="3">Citroen</option>
+                <select class="input-select" [(ngModel)]="when" [ngClass]="{'warn': !when}">
+                    <option [value]="ability.type" class="list-item"
+                        *ngFor="let ability of abilityCreatorService.abilityTypes">
+                        {{ability.name}}
+                    </option>
                 </select>
             </div>
         </div>
+        <div class="input-wrapper">
+            <div class="two-input">
+                <div>
+                    <label class="label">Action</label>
+                    <div class="custom-select" style="width:200px;">
+                        <select class="input-select" [(ngModel)]="action" [ngClass]="{'warn': !action}">
+                            <option [value]="ability.type" class="list-item"
+                                *ngFor="let ability of abilityCreatorService.actionTypes">
+                                {{ability.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-part">
+                    <label class="label">Action</label>
+                    <input class="input-basic" [(ngModel)]="actionValue" style="width: 100px" type="number"
+                        [ngClass]="{'warn': !actionValue}">
+                </div>
+            </div>
+        </div>
+        <div class="input-wrapper">
+            <label class="label">Target</label>
+            <div class="custom-select" style="width:200px;">
+                <select class="input-select" [(ngModel)]="target" [ngClass]="{'warn': !target}">
+                    <option [value]="ability.type" class="list-item"
+                        *ngFor="let ability of abilityCreatorService.targetTypes">
+                        {{ability.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="input-wrapper">
+            <div class="custom-select" style="width:200px;">
+                <select class="input-select" [(ngModel)]="targetType" [ngClass]="{'warn': !targetType}">
+                    <option [value]="ability.type" class="list-item"
+                        *ngFor="let ability of abilityCreatorService.specificTargetTypes">
+                        {{ability.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="input-wrapper">
+            <label class="label">
+                Constraint
+            </label>
+            <div class="target-wrapper">
+                <div class="types">
+                    <div class="bolded-label top-label" [ngClass]="{'warn-text': !constraintType.length}">
+                        Constraint on specific type
+                    </div>
+                    <label class="chack-cont " *ngFor="let cardType of creatorService.cardTypes">
+                        <input type="checkbox" name="radio" (change)="onTypeSelectionChange(cardType.type)"
+                            [checked]="isChecked(cardType.type)">
+                        <span class="checkmark">
+                            <img [src]=cardType.icon height="25px" />
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="target-wrapper" style="width: 350px">
+                <div class="types">
+                    <div class="bolded-label" style="margin-top: 10px"
+                        [ngClass]="{'warn-text': constraintDefenceCheck && constraintDefence <= 0}">
+                        Constraint on defence
+                    </div>
+                    <input type="checkbox" class="checkbox" style="margin-left: auto; margin-top: 10px"
+                        (change)="constraintDefenceCheck=!constraintDefenceCheck">
+                    <input [attr.disabled]="!constraintDefenceCheck ? '' : null" class="input-basic input-last"
+                        [(ngModel)]="constraintDefence" style="margin-left: 20px">
+                </div>
+            </div>
+            <div class="target-wrapper" style="width: 350px">
+                <div class="types">
+                    <div class="bolded-label" style="margin-top: 10px"
+                        [ngClass]="{'warn-text': constraintAttackCheck && constraintAttack <= 0}">
+                        Constraint on attack
+                    </div>
+                    <input (change)="constraintAttackCheck=!constraintAttackCheck" type="checkbox" class="checkbox"
+                        style="margin-left: auto; margin-top: 10px">
+                    <input [attr.disabled]="!constraintAttackCheck ? '' : null" class="input-basic input-last"
+                        [(ngModel)]="constraintAttack" style="margin-left: 20px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div *ngIf="showErrorMessage"
+            style="font-weight: bold; color: red; font-size: 10px; height: 40px; width: 340px">
+            Not all fields have been filled properly <br>
+            <span
+                *ngIf="(constraintDefenceCheck && constraintDefence < 0) || (constraintAttackCheck && constraintAttack < 0)">
+                Constraint on defence and Constraint on attack cannot be less than or equal 0</span>
+        </div>
+        <div class="bttn bttn-ok" (click)="addAction()" style="margin-right: 20px">Add</div>
+        <div class="bttn" (click)="close()">Cancel</div>
     </div>
 </div>

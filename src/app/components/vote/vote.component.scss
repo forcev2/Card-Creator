@@ -1,0 +1,209 @@
+@import "~src/colors";
+
+.content {
+  padding-left: 70px;
+  padding-right: 67px;
+}
+
+.header {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.under-panel {
+  display: flex;
+  height: 70px;
+  align-items: flex-end;
+}
+
+.input-basic {
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #757575;
+  border-style: solid;
+  font-size: 20px;
+  height: 40px;
+  padding-left: 5px;
+  width: 300px;
+}
+
+.layout-margin-first {
+  margin-left: auto;
+}
+
+.filter-layout {
+  margin-left: 20px;
+}
+
+.panel-under-label {
+  font-size: 20px;
+}
+
+.collapse {
+  transition: all 0.2s ease-out;
+  display: block !important;
+  overflow: hidden !important;
+  max-height: 0;
+}
+
+.collapse.show {
+  transition: all 1s ease-in;
+  max-height: 9999px; /*any number which is lager than a height of any of your elements*/
+}
+
+.card-body {
+  background: none !important;
+  border: none;
+  display: flex;
+  align-items: flex-end;
+  padding: 0px;
+}
+
+.card {
+  height: 80px;
+  background: none !important;
+  border: none;
+  margin: 0px;
+}
+
+.part-input {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.title-part {
+  font-weight: bold;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 16px;
+  color: black;
+}
+
+.input-filter {
+  font-size: 16px;
+  height: 36px;
+}
+
+.smaller {
+  width: 100px;
+}
+
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  height: 36px;
+
+  .select-body {
+  }
+
+  .list-item {
+    height: 34px;
+    background-color: white;
+  }
+
+  .list-item:hover {
+    background-color: red;
+    height: 34px;
+  }
+}
+
+.input-select {
+  border-radius: 5px;
+  border-color: #757575;
+  border-width: 2px;
+  border-style: solid;
+  font-size: 16px;
+  height: 36px;
+  padding-left: 5px;
+  width: 250px;
+}
+
+.part-last {
+  margin-left: 20px;
+}
+
+.types {
+  display: flex;
+  flex-direction: row;
+  min-height: 50px;
+  align-content: center;
+
+  .chack-cont {
+    display: block;
+    position: relative;
+    padding-left: 10px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-right: 40px;
+  }
+
+  /* Hide the browser's default radio button */
+  .chack-cont input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 0px 0px 8px -2px #000000;
+    transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+    box-shadow: 0px 0px 8px -2px #000000;
+    margin-top: 5px;
+  }
+
+  .chack-cont:hover input ~ .checkmark {
+    background-color: #779bd1;
+  }
+
+  .chack-cont input:checked ~ .checkmark {
+    color: white;
+    background-color: #2a589d;
+  }
+
+  .chack-cont :after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .chack-cont input:checked ~ .checkmark:after {
+    display: block;
+  }
+}
+
+.card-display {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mark-card {
+  -webkit-box-shadow: 0px 0px 20px -2px $blue;
+  box-shadow: 0px 0px 20px -2px $blue;
+  outline: solid 5px $blue;
+}
+
+app-small-card {
+  margin-top: 50px;
+  margin-right: 30px;
+}

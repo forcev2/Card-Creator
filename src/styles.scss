@@ -4,11 +4,74 @@ html,
 body {
   height: 100%;
   margin: 0;
-  font-family: url("src/assets/fonts/MedievalSharp-Regular.ttf") !important;
+  font-family: Arial !important;
   background-color: $gray-light;
   color: $gray-very-dark;
 }
 
 input {
   font-family: url("src/assets/fonts/MedievalSharp-Regular.ttf") !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.bttn {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  transition: background-color cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+  -webkit-box-shadow: 0px 0px 4px -2px #000000;
+  box-shadow: 0px 0px 4px -2px #000000;
+  border-radius: 5px;
+  font-size: 16px;
+  height: 40px;
+  border-width: 1px;
+  width: 120px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.bttn-active {
+  background-color: $blue;
+  color: white;
+  font-weight: bold;
+}
+
+.bttn:hover {
+  background-color: #779bd1;
+  color: white;
+}
+
+.bttn-ok {
+  background-color: #2a589d;
+  color: white;
+}
+
+.warn {
+  border-color: red !important;
+  background-color: rgb(255, 234, 234);
+}
+
+.warn-text {
+  color: red;
+}
+
+.disabled-bttn {
+  background-color: $gray-light !important;
+  color: gray !important;
+}
+
+.disabled-bttn:hover {
+  background-color: $gray-light !important;
+  color: gray;
 }
