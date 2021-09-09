@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { emit } from 'process';
 import { AbilityCreatorService } from '../ability-creator.service';
 import { CardCreatorService } from '../card-creator.service';
 
@@ -17,9 +16,9 @@ export class AbilityCreatorComponent implements OnInit {
   target: number;
   targetType: number;
   constraintType: number[] = [];
-  constraintDefenceCheck: false = false;
+  constraintDefenceCheck: boolean = false;
   constraintDefence: number;
-  constraintAttackCheck: false = false;
+  constraintAttackCheck: boolean = false;
   constraintAttack: number;
 
 
@@ -35,15 +34,13 @@ export class AbilityCreatorComponent implements OnInit {
   closeEmitter = new EventEmitter<Ability>();
 
   abilityCreatorService = AbilityCreatorService;
+  creatorService = CardCreatorService;
 
   constructor(
     public abilityCreator: AbilityCreatorService,
-    public creatorService: CardCreatorService
   ) { }
 
   ngOnInit() {
-    console.log(this.ability)
-
     if (this.ability.id != -1) {
       this.name = this.ability.ability.name;
       this.when = this.ability.ability.when;
@@ -86,7 +83,7 @@ export class AbilityCreatorComponent implements OnInit {
   }
 
   close() {
-    this.abilityEmitter.emit({});
+    this.abilityEmitter.emit(<Ability>{});
   }
 
   acceptAbility(): Ability {
@@ -96,11 +93,11 @@ export class AbilityCreatorComponent implements OnInit {
       && (!this.constraintDefenceCheck || this.constraintDefence > 0)) {
       return {
         name: this.name,
-        when: this.when,
-        action: this.action,
+        when: parseInt('' + this.when),
+        action: parseInt('' + this.action),
         actionValue: this.actionValue,
-        target: this.target,
-        targetType: this.targetType,
+        target: parseInt('' + this.target),
+        targetType: parseInt('' + this.targetType),
         constraintType: this.constraintType,
         constraintDefenceCheck: this.constraintDefenceCheck,
         constraintDefence: this.constraintDefence,
@@ -121,8 +118,8 @@ export class Ability {
   target: number;
   targetType: number;
   constraintType: number[] = [];
-  constraintDefenceCheck: false;
+  constraintDefenceCheck: boolean;
   constraintDefence: number;
-  constraintAttackCheck: false;
+  constraintAttackCheck: boolean;
   constraintAttack: number;
 }

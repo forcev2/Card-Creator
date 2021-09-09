@@ -1,18 +1,18 @@
-import { Component, Input, OnInit, setTestabilityGetter } from '@angular/core';
-import { NumberValueAccessor } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from '../../data.service';
 import { AbilityCreatorService } from '../ability-creator.service';
 import { Ability } from '../ability-creator/ability-creator.component';
+import { AdminInfoModalClickComponent } from '../admin-info-modal-click/admin-info-modal-click.component';
 import { CardCreatorService } from '../card-creator.service';
-import { InfoCardComponent } from '../info-card/info-card.component';
+import { Card } from '../vote/vote.component';
 
 @Component({
-  selector: 'app-vote',
-  templateUrl: './vote.component.html',
-  styleUrls: ['./vote.component.scss']
+  selector: 'app-admin-card-approval',
+  templateUrl: './admin-card-approval.component.html',
+  styleUrls: ['./admin-card-approval.component.scss']
 })
-export class VoteComponent implements OnInit {
+export class AdminCardApprovalComponent implements OnInit {
 
   openFilterMenu: boolean = true;
 
@@ -22,9 +22,9 @@ export class VoteComponent implements OnInit {
 
   selectedCards: Card[] = [];
 
-  cards: Card[] = [
+  deletedCards: Card[] = [];
 
-  ]
+  cards: Card[] = []
 
   cardType: number = null;
   defence: number = null;
@@ -50,6 +50,11 @@ export class VoteComponent implements OnInit {
     this.dataService.getCards().subscribe((cards) => {
       this.cards = cards;
       this.cardsVisible = [...this.cards];
+
+      this.dataService.approvedIds().subscribe((approvedObject) => {
+        const approveIds = approvedObject.map(approveId => approveId.cardid)
+        this.selectedCards = this.cards.filter(card => approveIds.includes(card._id))
+      })
     })
   }
 
@@ -111,7 +116,6 @@ export class VoteComponent implements OnInit {
         return false;
       }
     }
-
     return true;
   }
 
@@ -120,28 +124,48 @@ export class VoteComponent implements OnInit {
       cardTemp._id === card._id
     )
     if (selectedCardID == -1) {
-      this.selectedCards.push(card)
+      this.dataService.approveCard(card).subscribe((_) => {
+        this.selectedCards.push(card);
+      })
     }
     else {
-      this.selectedCards.splice(selectedCardID, 1);
+      this.dataService.approveCardReverse(card).subscribe((_) => {
+        this.selectedCards.splice(selectedCardID, 1);
+      })
     }
-    console.log(this.selectedCards)
+  }
+
+  deleteCard(card: Card) {
+    this.deletedCards.push(card);
+    const cardIndex = this.selectedCards.findIndex((cardTemp) => {
+      return cardTemp._id === card._id;
+    })
+    cardIndex !== -1 ? this.selectedCards.splice(cardIndex, 1) : false
+  }
+
+  onCardClick(card: Card) {
+    if (!this.deletedCards.includes(card)) {
+      const modalRef = this.modalService.open(AdminInfoModalClickComponent);
+      modalRef.componentInstance.isSelected = this.isSelected(card)
+      modalRef.componentInstance.card = card
+      modalRef.componentInstance.closeEmitter.subscribe((close) => {
+        modalRef.close();
+        if (close === false) {
+          this.deleteCard(card);
+        }
+        else if (close) {
+          this.selectCard(card);
+        }
+      })
+    }
   }
 
   isSelected(card: Card) {
     return this.selectedCards.includes(card);
   }
 
-}
+  isDeleted(card: Card) {
+    return this.deletedCards.includes(card);
+  }
 
-export class Card {
-  id: number;
-  name: string;
-  description: string;
-  imgURL: any;
-  type: number;
-  health: number;
-  attack: number;
-  abilities: Ability[];
-  _id: any;
 }

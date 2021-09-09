@@ -1,9 +1,9 @@
 <div class="content">
     <div class="header">
-        <div>Voting</div>
+        <div>Newly added cards</div>
     </div>
     <div class="under-panel">
-        <div class="panel-under-label">Select the cards you would like to appear in the game</div>
+        <div class="panel-under-label"></div>
         <div class="layout-margin-first">
             <input class="input-basic" [(ngModel)]="search" placeholder="Search" (ngModelChange)="filterChange()">
         </div>
@@ -92,10 +92,11 @@
 
     </div>
     <div class="card-display">
-        <div class="card-wrapper" *ngFor="let card of cardsVisible" [ngClass]='{"mark-card": isSelected(card)}'>
+        <div *ngFor="let card of cardsVisible" class="card-wrapper"
+            [ngClass]='{"mark-card": isSelected(card), "remove-card-wrapper": isDeleted(card) }'>
             <app-small-card [name]='card.name' [description]='card.description' [imgURL]='card.imgURL'
                 [type]='card.type' [health]='card.health' [attack]='card.attack' [abilities]='card.abilities'
-                (click)='selectCard(card)'>
+                (click)='onCardClick(card)' [ngClass]='{ "remove-card": isDeleted(card) }'>
             </app-small-card>
         </div>
     </div>

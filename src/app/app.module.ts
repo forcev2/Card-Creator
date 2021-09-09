@@ -15,6 +15,9 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
 import { VoteComponent } from './components/vote/vote.component';
 import { SmallCardComponent } from './components/small-card/small-card.component';
 import { InfoCardComponent } from './components/info-card/info-card.component';
+import { AdminCardApprovalComponent } from './components/admin-card-approval/admin-card-approval.component';
+import { AdminInfoModalClickComponent } from './components/admin-info-modal-click/admin-info-modal-click.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ import { InfoCardComponent } from './components/info-card/info-card.component';
     VoteComponent,
     SmallCardComponent,
     InfoCardComponent,
+    AdminCardApprovalComponent,
+    AdminInfoModalClickComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,13 +42,16 @@ import { InfoCardComponent } from './components/info-card/info-card.component';
     NgbModule,
     NgbModalModule,
     NgbAccordionModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
     AbilityCreatorComponent,
-    ConfirmModalComponent],
+    ConfirmModalComponent,
+    InfoCardComponent,
+    AdminInfoModalClickComponent],
   exports: [
     MatSlideToggleModule,
   ]

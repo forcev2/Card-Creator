@@ -18,7 +18,7 @@ export class ConfirmModalComponent implements OnInit {
   }
 
   ok() {
-    this.router.navigate(['']);
+    this.router.navigate(['vote']);
     this.modalService.dismissAll();
   }
 

@@ -43,7 +43,7 @@
             <div class="part-input part-input-right">
                 <label class="label">Type</label>
                 <div class="types">
-                    <label class="chack-cont " *ngFor="let cardType of creatorService.cardTypes">
+                    <label class="chack-cont" *ngFor="let cardType of creatorS.cardTypes">
                         <input type="radio" name="radio" (change)="onProfitSelectionChange(cardType.type)"
                             checked="checked">
                         <span class="checkmark" style="margin-left: 10px">

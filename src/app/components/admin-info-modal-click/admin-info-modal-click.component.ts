@@ -1,14 +1,14 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbilityCreatorService } from '../ability-creator.service';
 import { CardCreatorService } from '../card-creator.service';
 import { Card } from '../vote/vote.component';
 
 @Component({
-  selector: 'app-info-card',
-  templateUrl: './info-card.component.html',
-  styleUrls: ['./info-card.component.scss']
+  selector: 'app-admin-info-modal-click',
+  templateUrl: './admin-info-modal-click.component.html',
+  styleUrls: ['./admin-info-modal-click.component.scss']
 })
-export class InfoCardComponent implements OnInit {
+export class AdminInfoModalClickComponent implements OnInit {
 
   @Input()
   card: Card = {
@@ -19,7 +19,6 @@ export class InfoCardComponent implements OnInit {
     type: 1,
     health: 11,
     attack: 22,
-    _id: -1,
     abilities: [{
       name: "Test",
       when: 0,
@@ -38,6 +37,9 @@ export class InfoCardComponent implements OnInit {
     }],
   };
 
+  @Input()
+  isSelected: boolean = false;
+
   @Output()
   closeEmitter: EventEmitter<boolean> = new EventEmitter<boolean>(null);
 
@@ -50,7 +52,15 @@ export class InfoCardComponent implements OnInit {
     console.log("card", this.card);
   }
 
-  close() {
+  cancel() {
+    this.closeEmitter.emit(undefined);
+  }
+
+  select() {
     this.closeEmitter.emit(true);
+  }
+
+  delete() {
+    this.closeEmitter.emit(false);
   }
 }

@@ -25,15 +25,16 @@ export class AbilityCreatorService {
     { type: 0, name: "Self" },
     { type: 1, name: "Opponent cards" },
     { type: 2, name: "Your cards" },
-    { type: 2, name: "Yours and opponent cards" },
+    { type: 3, name: "Yours and opponent cards" },
   ]
 
   static specificTargetTypes: { type: number, name: string }[] = [
     { type: 0, name: "Choosen" },
     { type: 1, name: "Random" },
     { type: 2, name: "Adjacent" },
-    { type: 4, name: "All" },
+    { type: 3, name: "All" },
   ]
+
 
   constructor() { }
 }

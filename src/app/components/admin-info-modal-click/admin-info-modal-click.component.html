@@ -1,0 +1,37 @@
+<div class="content">
+    <div class="header">
+        <div>Card name: {{card.name}}</div>
+        <div>
+            <span class="material-icons" (click)="cancel()" style="cursor:pointer">
+                close
+            </span>
+        </div>
+    </div>
+    <div class="health-attack-part">
+        <div class="part">Id: <strong>{{card.health}}</strong></div>
+    </div>
+    <div class="health-attack-part">
+        <div class="description">
+            Description: {{card.description}}
+        </div>
+    </div>
+    <div class="footer">
+        <div class="bttn" (click)="cancel()">
+            Cancel
+        </div>
+        <div class="bttn bttn-ok" style="width: 140px; margin-left: auto" (click)="select()">
+            <span *ngIf="!isSelected else selectedAlready">
+                Approve
+            </span>
+        </div>
+        <div class="bttn bttn-warn" style="margin-left: 20px" (click)="delete()">
+            Delete
+        </div>
+    </div>
+</div>
+
+<ng-template #selectedAlready>
+    <span>
+        Deselect
+    </span>
+</ng-template>

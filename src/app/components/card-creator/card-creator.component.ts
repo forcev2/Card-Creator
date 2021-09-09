@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from '../../data.service';
 import { Ability, AbilityCreatorComponent } from '../ability-creator/ability-creator.component';
 import { CardCreatorService } from '../card-creator.service';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { Card } from '../vote/vote.component';
 
 
 @Component({
@@ -27,23 +29,38 @@ export class CardCreatorComponent implements OnInit {
   numbersNegative: boolean;
   allFilled: boolean = true;
 
-
+  creatorS = CardCreatorService
 
   constructor(
     public creatorService: CardCreatorService,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private dataService: DataService) { }
 
   ngOnInit() {
-    this.abilities.push({ name: "ability" })
   }
 
   onProfitSelectionChange(type): void {
     this.type = type;
   }
 
+  cardCreateFromArgs(): any {
+    return {
+      id: -1,
+      name: this.name,
+      description: this.description,
+      imgURL: this.imgURL,
+      type: this.type,
+      health: this.health,
+      attack: this.attack,
+      abilities: this.abilities,
+    }
+  }
+
   open(content) {
     if (!this.cannotAddMoreAbilities()) {
-      const modalRef = this.modalService.open(AbilityCreatorComponent);
+      const modalRef = this.modalService.open(AbilityCreatorComponent, {
+        centered: true,
+      });
       modalRef.componentInstance.ability = { ability: null, id: -1 }
       modalRef.componentInstance.abilityEmitter.subscribe((ability) => {
         if (Object.keys(ability).length) {
@@ -103,10 +120,7 @@ export class CardCreatorComponent implements OnInit {
     this.imagePath = files;
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
-      console.log(reader.result)
       this.imgURL = reader.result;
-
-      console.log(this.imgURL)
     }
   }
 
@@ -117,8 +131,12 @@ export class CardCreatorComponent implements OnInit {
   createCard() {
     this.numbersNegative = this.numbersAreNegative();
     this.allFilled = this.canCreateCard();
+
+
     if (!this.numbersNegative && this.allFilled) {
-      const modalRef = this.modalService.open(ConfirmModalComponent);
+      this.dataService.addCard(this.cardCreateFromArgs()).subscribe((response => {
+        const modalRef = this.modalService.open(ConfirmModalComponent);
+      }))
     }
   }
 
@@ -129,7 +147,6 @@ export class CardCreatorComponent implements OnInit {
   canCreateCard() {
     if (this.name &&
       this.image &&
-      this.description &&
       this.attack &&
       this.health &&
       this.type) {

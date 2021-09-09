@@ -82,7 +82,7 @@ $card-width: 307px;
     border-radius: 5px;
     background-color: white;
     left: 5px;
-    top: $card-height - 65px;
+    top: $card-height - 48px;
     color: white;
     z-index: 10;
   }
@@ -93,7 +93,7 @@ $card-width: 307px;
     border-radius: 5px;
     background-color: white;
     left: $card-width - 85px;
-    top: $card-height - 65px;
+    top: $card-height - 48px;
     color: white;
   }
 
@@ -103,17 +103,18 @@ $card-width: 307px;
     height: 40px;
     border-radius: 5px;
     left: 2px;
-    top: $card-height - 95px;
+    top: $card-height - 78px;
     z-index: 11;
     transform: scaleX(-1);
   }
+
   .sword-left {
     border: none;
     width: 80px;
     height: 40px;
     border-radius: 5px;
     left: -4px;
-    top: $card-height - 95px;
+    top: $card-height - 78px;
     z-index: 11;
   }
 
@@ -123,7 +124,7 @@ $card-width: 307px;
     height: 40px;
     border-radius: 5px;
     left: $card-width - 85px;
-    top: $card-height - 95px;
+    top: $card-height - 78px;
     color: white;
     z-index: 11;
   }

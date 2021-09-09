@@ -57,6 +57,16 @@ body {
   color: white;
 }
 
+.bttn-warn {
+  background-color: $warn-red;
+  color: white;
+}
+
+.bttn-warn:hover {
+  color: black;
+  background-color: rgb(255, 146, 146);
+}
+
 .warn {
   border-color: red !important;
   background-color: rgb(255, 234, 234);

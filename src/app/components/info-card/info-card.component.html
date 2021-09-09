@@ -1,11 +1,48 @@
 <div class="content">
     <div class="header">
-        <div>Successfully created new Card!</div>
+        <div>{{card.name}}</div>
+        <div>
+            <span class="material-icons" (click)="close()" style="cursor:pointer">
+                close
+            </span>
+        </div>
+    </div>
+    <div class="health-attack-part">
+        <div class="part">Defence: <strong>{{card.health}}</strong></div>
+        <div class="part">Attack: <strong>{{card.attack}}</strong></div>
     </div>
     <div class="body">
-
+        <div><strong>Description:</strong></div>
+        <div class="description">
+            {{card.description}}
+        </div>
+    </div>
+    <div class="body">
+        <div><strong>Abilities:</strong></div>
+        <div *ngIf="card.abilities">
+            <div class="action" *ngFor="let ability of card.abilities; index as i">
+                {{i + 1}}. <strong>{{ability.name}}:</strong>
+                {{service.abilityTypes[ability.when].name}}
+                {{service.actionTypes[ability.action].name | lowercase}}(<strong>{{ability.actionValue}}</strong>) to
+                {{service.specificTargetTypes[ability.targetType].name | lowercase}}
+                {{service.targetTypes[ability.target].name | lowercase}}
+                , can be used only on:<br> - card types :
+                <span *ngFor="let type of ability.constraintType">
+                    <strong> {{cardService.cardTypes[type - 1].name}}</strong>
+                </span>.
+                <span *ngIf="ability.constraintAttackCheck">
+                    <br> - cards with {{ability.constraintAttack}} attack.
+                </span>
+                <span *ngIf="ability.constraintDefenceCheck">
+                    <br> - cards with {{ability.constraintDefence}} defence.
+                </span>
+            </div>
+        </div>
+        <div *ngIf="!card.abilities">
+            No abilities
+        </div>
     </div>
     <div class="footer">
-        <div class="bttn bttn-ok" (click)="ok()">OK</div>
+
     </div>
 </div>

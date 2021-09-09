@@ -68,7 +68,8 @@
                     <div class="bolded-label top-label" [ngClass]="{'warn-text': !constraintType.length}">
                         Constraint on specific type
                     </div>
-                    <label class="chack-cont " *ngFor="let cardType of creatorService.cardTypes">
+                    <label class="chack-cont" *ngFor="let cardType of creatorService.cardTypes">
+                        {{cardType.type}}
                         <input type="checkbox" name="radio" (change)="onTypeSelectionChange(cardType.type)"
                             [checked]="isChecked(cardType.type)">
                         <span class="checkmark">
@@ -86,7 +87,7 @@
                     <input type="checkbox" class="checkbox" style="margin-left: auto; margin-top: 10px"
                         (change)="constraintDefenceCheck=!constraintDefenceCheck">
                     <input [attr.disabled]="!constraintDefenceCheck ? '' : null" class="input-basic input-last"
-                        [(ngModel)]="constraintDefence" style="margin-left: 20px">
+                        [(ngModel)]="constraintDefence" style="margin-left: 20px" type="number">
                 </div>
             </div>
             <div class="target-wrapper" style="width: 350px">
@@ -98,7 +99,7 @@
                     <input (change)="constraintAttackCheck=!constraintAttackCheck" type="checkbox" class="checkbox"
                         style="margin-left: auto; margin-top: 10px">
                     <input [attr.disabled]="!constraintAttackCheck ? '' : null" class="input-basic input-last"
-                        [(ngModel)]="constraintAttack" style="margin-left: 20px">
+                        [(ngModel)]="constraintAttack" style="margin-left: 20px" type="number">
                 </div>
             </div>
         </div>
