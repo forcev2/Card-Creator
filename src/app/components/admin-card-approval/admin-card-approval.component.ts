@@ -136,11 +136,13 @@ export class AdminCardApprovalComponent implements OnInit {
   }
 
   deleteCard(card: Card) {
-    this.deletedCards.push(card);
-    const cardIndex = this.selectedCards.findIndex((cardTemp) => {
-      return cardTemp._id === card._id;
+    this.dataService.deleteCard(card).subscribe(cardTemp => {
+      this.deletedCards.push(card);
+      const cardIndex = this.selectedCards.findIndex((cardTemp) => {
+        return cardTemp._id === card._id;
+      })
+      cardIndex !== -1 ? this.selectedCards.splice(cardIndex, 1) : false
     })
-    cardIndex !== -1 ? this.selectedCards.splice(cardIndex, 1) : false
   }
 
   onCardClick(card: Card) {

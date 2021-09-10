@@ -5,6 +5,9 @@ import { AdminCardApprovalComponent } from './components/admin-card-approval/adm
 import { CardCreatorComponent } from './components/card-creator/card-creator.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { InfoCardComponent } from './components/info-card/info-card.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
+import { RegisterComponent } from './components/register/register.component';
 import { VoteComponent } from './components/vote/vote.component';
 
 
@@ -14,7 +17,9 @@ const routes: Routes = [
   { path: 'vote', component: VoteComponent },
   { path: 'info-card', component: InfoCardComponent },
   { path: 'admin-card', component: AdminCardApprovalComponent },
-  { path: '', component: AbilityCreatorComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', component: MainComponent },
 ];
 
 @NgModule({

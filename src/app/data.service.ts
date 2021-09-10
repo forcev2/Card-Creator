@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Card } from './components/vote/vote.component';
 
 @Injectable({
@@ -8,6 +8,9 @@ import { Card } from './components/vote/vote.component';
 })
 export class DataService {
   httpURL: string = 'http://localhost:3000';
+
+  loggedIn: Subject<boolean> = new Subject();
+
 
 
   getCards(): Observable<Card[]> {
@@ -36,6 +39,25 @@ export class DataService {
   approveCardReverse(card: Card) {
     return this.http.post(this.httpURL + '/disapproveCard', card);
   }
+
+  voteCard(card: Card, userID: any) {
+    return this.http.post(this.httpURL + '/voteCard', { cardid: card._id, userid: userID });
+  }
+
+  login(password: string, username: string) {
+    return this.http.post(this.httpURL + '/login', { password: password, username: username });
+  }
+
+  register(password: string, username: string) {
+    console.log(password)
+    return this.http.post(this.httpURL + '/register', { password: password, username: username });
+  }
+
+
+  loginChangeValue(correct: boolean) {
+    this.loggedIn.next(correct)
+  }
+
 
 
   constructor(private http: HttpClient) { }

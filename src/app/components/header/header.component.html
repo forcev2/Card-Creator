@@ -2,4 +2,22 @@
     <div class="header-title">
         Card-Creator
     </div>
+    <div class="header-link" *ngIf="isLoggedIn" routerLink="/card-creator">
+        CREATE CARD
+    </div>
+    <div class="header-link" *ngIf="isLoggedIn" routerLink="/vote">
+        VOTE
+    </div>
+    <div class="header-link" *ngIf="isLoggedIn" routerLink="/admin-card">
+        APPROVE CARDS
+    </div>
+    <div class="header-link" style="margin-left: auto" *ngIf="!isLoggedIn" routerLink="/register">
+        Register
+    </div>
+    <div class="header-link" style="margin-right: 100px" *ngIf="!isLoggedIn" routerLink="/login">
+        Log in
+    </div>
+    <div class="header-link" style="margin-left: auto; margin-right: 100px" *ngIf="isLoggedIn" (click)="logout()">
+        Log out
+    </div>
 </div>

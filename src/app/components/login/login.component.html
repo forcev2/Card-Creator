@@ -1,0 +1,29 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="header">
+            <div>Login</div>
+        </div>
+        <div class="body">
+            <div class="input-wrapper">
+                <label class="label">Username</label>
+                <input class="input-basic" [(ngModel)]="username" [ngClass]="{'warn': (!username && clickedRegister)}">
+            </div>
+            <div class="input-wrapper">
+                <label class="label">
+                    Password
+                </label>
+                <input class="input-basic" [(ngModel)]="password" [ngClass]="{'warn': (!password && clickedRegister)}"
+                    type="password">
+            </div>
+
+        </div>
+        <div class="footer">
+            <div style="font-weight: bold; color: red; font-size: 12x; height: 40px; width: 340px">
+                <span *ngIf="badpassword">
+                    username or password is incorrect <br>
+                </span>
+            </div>
+            <div class="bttn bttn-ok" (click)="acceptRegistration()">Login</div>
+        </div>
+    </div>
+</div>

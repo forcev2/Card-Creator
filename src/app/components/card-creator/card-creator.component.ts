@@ -88,6 +88,7 @@ export class CardCreatorComponent implements OnInit {
     const modalRef = this.modalService.open(AbilityCreatorComponent);
     modalRef.componentInstance.ability = { ability: this.abilities[i], id: i }
     modalRef.componentInstance.abilityEmitter.subscribe((ability) => {
+      console.log(ability)
       if (Object.keys(ability).length) {
         this.abilities[i] = ability;
       }

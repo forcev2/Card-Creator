@@ -9,12 +9,12 @@ import { CardCreatorService } from '../card-creator.service';
 })
 export class AbilityCreatorComponent implements OnInit {
 
-  name: string;
-  when: number;
-  action: number;
+  name: string = null;
+  when: number = null;
+  action: number = null;
   actionValue: number;
-  target: number;
-  targetType: number;
+  target: number = null;
+  targetType: number = null;
   constraintType: number[] = [];
   constraintDefenceCheck: boolean = false;
   constraintDefence: number;
@@ -87,11 +87,11 @@ export class AbilityCreatorComponent implements OnInit {
   }
 
   acceptAbility(): Ability {
-    if (this.name && this.when && this.action
-      && this.actionValue && this.target && this.targetType
+    if (this.name != null && this.when != null && this.action != null
+      && this.actionValue != null && this.target != null && this.targetType != null
       && this.constraintType.length != 0 && (!this.constraintAttackCheck || this.constraintAttack > 0)
       && (!this.constraintDefenceCheck || this.constraintDefence > 0)) {
-      return {
+      const abilityReturn = {
         name: this.name,
         when: parseInt('' + this.when),
         action: parseInt('' + this.action),
@@ -104,6 +104,8 @@ export class AbilityCreatorComponent implements OnInit {
         constraintAttackCheck: this.constraintAttackCheck,
         constraintAttack: this.constraintAttack,
       }
+      console.log(abilityReturn)
+      return abilityReturn;
     }
     return null;
   }

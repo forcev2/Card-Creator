@@ -22,6 +22,8 @@ export class VoteComponent implements OnInit {
 
   selectedCards: Card[] = [];
 
+  userID: number = 1;
+
   cards: Card[] = [
 
   ]
@@ -48,8 +50,11 @@ export class VoteComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.getCards().subscribe((cards) => {
-      this.cards = cards;
-      this.cardsVisible = [...this.cards];
+      this.dataService.approvedIds().subscribe((approvedObject) => {
+        const approveIds = approvedObject.map(approveId => approveId.cardid)
+        this.cards = cards.filter(card => approveIds.includes(card._id))
+        this.cardsVisible = [...this.cards];
+      })
     })
   }
 
@@ -120,12 +125,13 @@ export class VoteComponent implements OnInit {
       cardTemp._id === card._id
     )
     if (selectedCardID == -1) {
-      this.selectedCards.push(card)
+      this.dataService.voteCard(card, this.userID).subscribe(voted => {
+        this.selectedCards.push(card)
+      })
     }
     else {
       this.selectedCards.splice(selectedCardID, 1);
     }
-    console.log(this.selectedCards)
   }
 
   isSelected(card: Card) {

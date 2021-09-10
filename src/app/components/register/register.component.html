@@ -1,0 +1,51 @@
+<div class="content-wrapper">
+    <div class="content">
+        <div class="header">
+            <div>Register</div>
+        </div>
+        <div class="body">
+            <div class="input-wrapper">
+                <label class="label">Username</label>
+                <input class="input-basic" [(ngModel)]="username" [ngClass]="{'warn': (!username && clickedRegister)}">
+            </div>
+            <div class="input-wrapper">
+                <label class="label">Email</label>
+                <input class="input-basic" [(ngModel)]="email" [ngClass]="{'warn': (!email && clickedRegister)}">
+            </div>
+            <div class="input-wrapper">
+                <label class="label">
+                    Confirm email
+                    <span class="warn-text" *ngIf="this.email !== this.emailConfirm">
+                        Emails are diferent
+                    </span>
+                </label>
+                <input class="input-basic" [(ngModel)]="emailConfirm"
+                    [ngClass]="{'warn':  this.email !== this.emailConfirm}">
+            </div>
+            <div class="input-wrapper">
+                <label class="label">
+                    Password
+                </label>
+                <input class="input-basic" [(ngModel)]="password" [ngClass]="{'warn': (!password && clickedRegister)}"
+                    type="password">
+            </div>
+            <div class="input-wrapper">
+                <label class="label">Confirm password <span class="warn-text"
+                        *ngIf="this.password !== this.passwordConfirm">Passwords are diferent</span></label>
+                <input class="input-basic" [(ngModel)]="passwordConfirm"
+                    [ngClass]="{'warn':  this.password !== this.passwordConfirm}" type="password">
+            </div>
+        </div>
+        <div class="footer">
+            <div style="font-weight: bold; color: red; font-size: 12x; height: 40px; width: 340px">
+                <span *ngIf="this.email === 'm@m.com'">
+                    This email is already taken <br>
+                </span>
+                <span *ngIf="notAllFilled && clickedRegister">
+                    Fill all the fields <br>
+                </span>
+            </div>
+            <div class="bttn bttn-ok" (click)="acceptRegistration()">Register</div>
+        </div>
+    </div>
+</div>

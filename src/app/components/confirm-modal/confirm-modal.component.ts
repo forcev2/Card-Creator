@@ -8,7 +8,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./confirm-modal.component.scss']
 })
 export class ConfirmModalComponent implements OnInit {
-
   constructor(
     private router: Router,
     private modalService: NgbModal
@@ -21,5 +20,4 @@ export class ConfirmModalComponent implements OnInit {
     this.router.navigate(['vote']);
     this.modalService.dismissAll();
   }
-
 }

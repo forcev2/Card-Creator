@@ -19,6 +19,7 @@ export class AdminInfoModalClickComponent implements OnInit {
     type: 1,
     health: 11,
     attack: 22,
+    _id: -1,
     abilities: [{
       name: "Test",
       when: 0,

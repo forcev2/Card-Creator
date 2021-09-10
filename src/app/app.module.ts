@@ -18,6 +18,9 @@ import { InfoCardComponent } from './components/info-card/info-card.component';
 import { AdminCardApprovalComponent } from './components/admin-card-approval/admin-card-approval.component';
 import { AdminInfoModalClickComponent } from './components/admin-info-modal-click/admin-info-modal-click.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { HttpClientModule } from '@angular/common/http';
     InfoCardComponent,
     AdminCardApprovalComponent,
     AdminInfoModalClickComponent,
+    RegisterComponent,
+    LoginComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,8 @@ import { HttpClientModule } from '@angular/common/http';
     AbilityCreatorComponent,
     ConfirmModalComponent,
     InfoCardComponent,
-    AdminInfoModalClickComponent],
+    AdminInfoModalClickComponent,
+    RegisterComponent],
   exports: [
     MatSlideToggleModule,
   ]
